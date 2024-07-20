@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Diabetes Risk Prediction</title>
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- Favicon-->
+    <link rel="icon" type="image/png" href="static/images/favicon.png">
+    <!-- Font-->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/opensans-font.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='fonts/material-design-iconic-font/css/material-design-iconic-font.min.css') }}">
+    <!-- datepicker -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/jquery-ui.min.css') }}">
+    <!-- Toastr -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <!-- Main Style Css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="page-content">
+        <div class="wizard-heading">Diabetes Risk Prediction</div>
+        <div class="wizard-v6-content">
+            <div class="wizard-form">
+                <form class="form-register" autocomplete="off" id="form-register" method="post">
+                    <div id="form-total">
+                        <!-- SECTION 1 -->
+                        <h2>
+                            <p class="step-icon"><span>1</span></p>
+                            <span class="step-text">Personal Info</span>
+                        </h2>
+                        <section>
+                            <div class="inner">
+                                <div class="form-heading">
+                                    <h3>Personal Details</h3>
+                                    <span>1/3</span>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-holder">
+                                        <label class="form-row-inner">
+                                            <input type="text" class="form-control" id="first_name" name="first_name" autocomplete="nope" error_name="First Name" required>
+                                            <span class="label">First Name</span>
+                                        </label>
+                                    </div>
+                                    <div class="form-holder">
+                                        <label class="form-row-inner">
+                                            <input type="text" class="form-control" id="last_name" name="last_name" autocomplete="nope" error_name="Last Name" required>
+                                            <span class="label">Last Name</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-holder">
+                                        <label class="special-label-1">&nbsp;&nbsp;Gender </label>
+                                        <select name="Gender" id="Gender" class="form-control">
+                                            <option value="Male" selected>Male</option>
+                                            <option value="Female">Female</option>
+                                        </select>
+                                        <span class="select-btn">
+                                            <i class="zmdi zmdi-chevron-down"></i>
+                                        </span>
+                                    </div>
+                                    <div class="form-holder">
+                                        <label class="special-label-1">&nbsp;&nbsp;Patient's Age </label>
+                                        <input type="number" id="Age" name="Age" min="1" max="100" value="21" error_name="Patient's Age" required>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-holder form-holder-2">
+                                        <br>
+                                        <label class="form-row-inner">
+                                            <input type="text" class="form-control" id="address" name="address" autocomplete="nope" error_name="Patient's Address" required>
+                                            <span class="label">Patient's Address</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <!-- SECTION 2 -->
+                        <h2>
+                            <p class="step-icon"><span>2</span></p>
+                            <span class="step-text">Health Info</span>
+                        </h2>
+                        <section>
+                            <div class="inner">
+                                <div class="form-heading">
+                                    <h3>Health Details</h3>
+                                    <span>2/3</span>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-holder">
+                                        <label class="special-label-1">Patient's Glucose (mg/dL) </label>
+                                        <input type="number" id="Glucose" name="Glucose" min="60" max="200" value="100" error_name="Patient's Glucose"  required>
+                                    </div>
+                                    <div class="form-holder">
+                                        <div class="form-images">
+                                            <img src="static/images/logo.jpg" alt="Health">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-holder">
+                                        <label class="special-label-1">Patient's Cholesterol (mg/dL) </label>
+                                        <input type="number" id="Cholesterol" name="Cholesterol" min="100" max="300" value="200" error_name="Patient's Cholesterol"  required>
+                                    </div>
+                                    <div class="form-holder">
+                                        <label class="special-label-1">Patient's HDL Cholesterol (mg/dL) </label>
+                                        <input type="number" id="HDL_Chol" name="HDL_Chol" min="20" max="100" value="50" error_name="Patient's HDL Cholesterol" required>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-holder">
+                                        <label class="special-label-1">Patient's Height (inches) </label>
+                                        <input type="number" id="Height" name="Height" min="44" max="88" value="67" error_name="Patient's Height" required>
+                                    </div>
+                                    <div class="form-holder">
+                                        <label class="special-label-1">Patient's Weight (lbs) </label>
+                                        <input type="number" id="Weight" name="Weight" min="66" max="330" value="154" error_name="Patient's Weight" required>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-holder">
+                                        <label class="special-label-1">Patient's Systolic Blood Pressure (mmHg) </label>
+                                        <input type="number" id="Systolic_BP" name="Systolic_BP" min="90" max="180" value="120" error_name="Patient's Systolic Blood Pressure" required>
+                                    </div>
+                                    <div class="form-holder">
+                                        <label class="special-label-1">Patient's Diastolic Blood Pressure (mmHg) </label>
+                                        <input type="number" id="Diastolic_BP" name="Diastolic_BP" min="60" max="120" value="80" error_name="Patient's Diastolic Blood Pressure" required>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-holder">
+                                        <label class="special-label-1">Patient's Waist (inches) </label>
+                                        <input type="number" id="Waist" name="Waist" min="20" max="60" value="35" error_name="Patient's Waist" required>
+                                    </div>
+                                    <div class="form-holder">
+                                        <label class="special-label-1">Patient's Hip (inches) </label>
+                                        <input type="number" id="Hip" name="Hip" min="30" max="70" value="40" error_name="Patient's Hip" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <!-- SECTION 3 -->
+                        <h2>
+                            <p class="step-icon"><span>3</span></p>
+                            <span class="step-text">Confirm</span>
+                        </h2>
+                        <section>
+                            <div class="inner">
+                                <div class="form-heading">
+                                    <h3>Confirm Details</h3>
+                                    <span>3/3</span>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-holder">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <tbody>
+                                                    <tr class="space-row">
+                                                        <th>Full Name:</th>
+                                                        <td id="fullname-val"></td>
+                                                    </tr>
+                                                    <tr class="space-row">
+                                                        <th>Age:</th>
+                                                        <td id="age-val"></td>
+                                                    </tr>
+                                                    <tr class="space-row">
+                                                        <th>Glucose:</th>
+                                                        <td id="Glucose-val"></td>
+                                                        <td>mg/dL</td>
+                                                    </tr>
+                                                    <tr class="space-row">
+                                                        <th>HDL Cholesterol:</th>
+                                                        <td id="HDL_Chol-val"></td>
+                                                        <td>mg/dL</td>
+                                                    </tr>
+                                                    <tr class="space-row">
+                                                        <th>Height:</th>
+                                                        <td id="Height-val"></td>
+                                                        <td>inches</td>
+                                                    </tr>
+                                                    <tr class="space-row">
+                                                        <th>Systolic Blood Pressure:</th>
+                                                        <td id="Systolic_BP-val"></td>
+                                                        <td>mmHg</td>
+                                                    </tr>
+                                                    <tr class="space-row">
+                                                        <th>Waist:</th>
+                                                        <td id="Waist-val"></td>
+                                                        <td>inches</td>
+                                                    </tr>
+                                                </tbody>                                        
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <tbody>
+                                                <tr class="space-row">
+                                                    <th>Gender:</th>
+                                                    <td id="gender-val"></td>
+                                                </tr>
+                                                <tr class="space-row">
+                                                    <th>Address:</th>
+                                                    <td id="address-val"></td>
+                                                </tr>
+                                                <tr class="space-row">
+                                                    <th>Cholesterol:</th>
+                                                    <td id="Cholesterol-val"></td>
+                                                    <td>mg/dL</td>
+                                                </tr>
+                                                <tr class="space-row">
+                                                    <th>Cholesterol Ratio:</th>
+                                                    <td id="Ratio_Chol-val"></td>
+                                                </tr>
+                                                <tr class="space-row">
+                                                    <th>Weight:</th>
+                                                    <td id="Weight-val"></td>
+                                                    <td>lbs</td>
+                                                </tr>
+                                                <tr class="space-row">
+                                                    <th>Diastolic Blood Pressure:</th>
+                                                    <td id="Diastolic_BP-val"></td>
+                                                    <td>mmHg</td>
+                                                </tr>
+                                                <tr class="space-row">
+                                                    <th>Hip:</th>
+                                                    <td id="Hip-val"></td>
+                                                    <td>inches</td>
+                                                </tr>
+                                            </tbody>                                        
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </form>
+
+                {% if prediction is not none %}
+                <div id="popup" class="popup">
+                    <div class="popup-content">
+                        <span class="close" onclick="closePopup()">&times;</span>
+                        <div class="results">
+                            <h1>
+                                Report: 
+                                <span style="color: {{ '#DC143C' if prediction[0] == 1 else '#00FFFF' }};">
+                                    {{ 'Diabetic' if prediction[0] == 1 else 'Non-Diabetic' }}
+                                </span>
+                            </h1>                            
+                            <p style="color: {{ '#DC143C' if prediction[0] == 1 else '#00FFFF' }}; font-weight: bold;">
+                                Probability of Diabetes: {{ (probability * 100) | round(2) }} %
+                            </p>               
+                            <p style="font-weight: bold;">
+                                <br>
+                                {{ request.form['first_name'] }}{{ " probably has Diabetes. Better get checked on time." if prediction[0] == 1 else " doesn't seem to have Diabetes. Hurray!"}}
+                            </p>
+                            <br>
+                            <div class="popup-image">
+                                <img src="data:image/png;base64,{{ plot_url }}" alt="Diabetic/Non-Diabetic Chart">
+                            </div>
+                            <br>
+                            <br>
+                            <h1>Full Report:</h1>
+                            {% set cholesterol = request.form['Cholesterol'] | float %}
+                            {% set hdlChol = request.form['HDL_Chol'] | float %}
+                            {% set height = request.form['Height'] | float %}
+                            {% set weight = request.form['Weight'] | float %}
+                            {% set waist = request.form['Waist'] | float %}
+                            {% set hip = request.form['Hip'] | float %}
+                            <br>
+                            <p class="report-title">Name:&nbsp;</p><br><p class="report-detail">{{ request.form['first_name'] }} {{ request.form['last_name'] }}</p><br>
+                            <p class="report-title">Age:&nbsp;</p><br><p class="report-detail">{{ request.form['Age'] }}</p><br>
+                            <p class="report-title">Gender:&nbsp;</p><br><p class="report-detail">{{ request.form['Gender'] }}</p><br>
+                            <p class="report-title">Address:&nbsp;</p><br><p class="report-detail">{{ request.form['address'] }}</p><br>
+                            <p class="report-title">Glucose:&nbsp;</p><br><p class="report-detail">{{ request.form['Glucose'] }} mg/dL</p><br>
+                            <p class="report-title">Cholesterol:&nbsp;</p><br><p class="report-detail">{{ request.form['Cholesterol'] }} mg/dL</p><br>
+                            <p class="report-title">HDL Cholesterol:&nbsp;</p><br><p class="report-detail">{{ request.form['HDL_Chol'] }} mg/dL</p><br>
+                            <p class="report-title">Cholesterol Ratio:&nbsp;</p><br><p class="report-detail">{{( cholesterol / hdlChol ) | round(2) }}</p><br>
+                            <p class="report-title">Height:&nbsp;</p><br><p class="report-detail">{{ request.form['Height'] }} inches</p><br>
+                            <p class="report-title">Weight:&nbsp;</p><br><p class="report-detail">{{ request.form['Weight'] }} lbs</p><br>
+                            <p class="report-title">BMI:&nbsp;</p><br><p class="report-detail">{{(( weight / (height * height)) * 703 )| round(1) }}</p><br>
+                            <p class="report-title">Blood Pressure:&nbsp;</p><br><p class="report-detail">{{ request.form['Systolic_BP'] }} / {{ request.form['Diastolic_BP'] }}</p><br>
+                            <p class="report-title">Waist:&nbsp;</p><br><p class="report-detail">{{ request.form['Waist'] }} inches</p><br>
+                            <p class="report-title">Hip:&nbsp;</p><br><p class="report-detail">{{ request.form['Hip'] }} inches</p><br>
+                            <p class="report-title">Waist / Hip Ratio:&nbsp;</p><br><p class="report-detail">{{( waist / hip ) | round(2) }}</p><br>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.steps.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery-ui.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script> 
+</body>
+</html>
