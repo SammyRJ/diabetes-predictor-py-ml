@@ -149,11 +149,17 @@ body {
 	background: #55e8d5;
 }
 .form-register .steps li a .step-text {
-	color: #333;
-	font-size: 16px;
+	color: #ccc;
+	font-size: 18px;
 	font-weight: 400;
 	padding-top: 18px;
 	padding-left: 20px;
+}
+.form-register .steps li.current a .step-text,
+.form-register .steps li.current a:active .step-text,
+.form-register .steps li.done a .step-text,
+.form-register .steps li.done a:active .step-text {
+	color: #55e8d5;
 }
 .form-register .content {
 	padding:  0 50px;
@@ -565,6 +571,7 @@ input[type=number]::-webkit-inner-spin-button {
     display: flex; /* Use flexbox for centering */
     justify-content: center; /* Center align items horizontally */
     align-items: center; /* Center align items vertically */
+    padding-right: 75px;
 }
 
 .popup {
@@ -675,3 +682,70 @@ body {
   ::-webkit-scrollbar-track {
     background: rgba(255, 255, 255, 0)
   }
+
+
+.precontainer {
+    --uib-size: 45px;
+    --uib-color: white;
+    --uib-speed: 1.75s;
+    --uib-bg-opacity: .1;
+    height: 31.25px;
+    width: 50px;
+    transform-origin: center;
+    overflow: visible;
+}
+
+.car {
+    stroke: var(--uib-color);
+    stroke-dasharray: 100;
+    stroke-dashoffset: 0;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    animation:
+    travel var(--uib-speed) ease-in-out infinite,
+    fade var(--uib-speed) ease-out infinite;
+    will-change: stroke-dasharray, stroke-dashoffset;
+    transition: stroke 0.5s ease;
+}
+
+.track {
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke: var(--uib-color);
+    opacity: var(--uib-bg-opacity);
+}
+
+@keyframes travel {
+    0% {
+        stroke-dashoffset: 100;
+    }
+    75% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes fade {
+    0% {
+        opacity: 0;
+    }
+    20%,
+    55% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.preloader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background: #383a4f;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+}

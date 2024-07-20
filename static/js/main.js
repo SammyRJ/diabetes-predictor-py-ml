@@ -110,3 +110,11 @@ $("#day").datepicker({
     showOn: "both",
     buttonText: '<i class="zmdi zmdi-chevron-down"></i>',
 });
+
+$(window).on('load', function() {
+    setTimeout(function() {
+        $('.preloader').fadeOut('slow', function() {
+            $('.page-content').fadeIn('slow');
+        });
+    }, 2000); // Preloader for at least 2.5 secs (LOOKS COOL SO YOU GOTTA SEE IT)
+});
