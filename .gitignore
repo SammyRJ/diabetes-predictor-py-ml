@@ -1,0 +1,6 @@
+# ignore the checkpoints file created by jupyter notebook
+.ipynb_checkpoints
+
+# ignore all files in directory named PATIENT_PREDICTION_RECORDS to prevent my test of records from being uploaded
+PATIENT_PREDICTION_RECORDS
+

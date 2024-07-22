@@ -5,6 +5,8 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import io
 import base64
+import os
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -24,6 +26,11 @@ try:
     expected_columns = model.feature_names_in_
 except AttributeError:
     raise ValueError("The model does not contain feature names. Please ensure the model is trained with feature names.")
+
+# Ensure the prediction results output folder exists
+output_folder = 'PATIENT_PREDICTION_RECORDS'
+os.makedirs(output_folder, exist_ok=True)
+output_file = os.path.join(output_folder, 'predicted_results.csv')
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -49,8 +56,11 @@ def index():
         # Convert categorical inputs to numerical
         Gender = {'Male': 0, 'Female': 1}.get(Gender, 0)
         
-        # Prepare input data as a DataFrame
-        input_data = pd.DataFrame({
+        # Prepare input data as a DataFrame with original values
+        input_data_original = pd.DataFrame({
+            'Date_Time': [datetime.now().strftime('%Y-%m-%d %H:%M:%S')],
+            'First_Name': [first_name],
+            'Last_Name': [last_name],
             'Gender_male': [1 if Gender == 0 else 0],
             'Gender_female': [1 if Gender == 1 else 0],
             'Glucose': [Glucose],
@@ -68,8 +78,11 @@ def index():
             'Hip': [Hip]
         })
 
+        # Prepare input data for scaling and prediction
+        input_data = input_data_original[['Gender_male', 'Gender_female', 'Glucose', 'Ratio_Chol_HDL', 'Cholesterol', 'HDL_Chol', 'Age', 'BMI', 'Weight', 'Height', 'Systolic_BP', 'Diastolic_BP', 'Ratio_Waist_Hip', 'Waist', 'Hip']]
+
         # Ensure columns are in the same order as during model training
-        input_data = input_data[expected_columns]
+        input_data = input_data[list(expected_columns)]
         
         # Standardize numerical columns using the loaded scaler
         input_data[numerical_cols] = scaler.transform(input_data[numerical_cols])
@@ -111,6 +124,21 @@ def index():
         plt.savefig(png_image, format='png', transparent=True)
         png_image.seek(0)
         plot_url = base64.b64encode(png_image.getvalue()).decode('utf8')
+
+        # Add prediction and probability to input data with original values
+        input_data_original['Prediction'] = prediction
+        input_data_original['Prediction'] = input_data_original['Prediction'].map({0: 'Non-Diabetic', 1: 'Diabetic'})
+        input_data_original['Probability'] = round(probability, 4)  # Round probability to 4 decimal places
+        
+        # Round numerical columns (you can adjust decimal places as needed)
+        rounding_columns = ['Glucose', 'Ratio_Chol_HDL', 'Cholesterol', 'HDL_Chol', 'Age', 'BMI', 'Weight', 'Height', 'Systolic_BP', 'Diastolic_BP', 'Ratio_Waist_Hip', 'Waist', 'Hip']
+        input_data_original[rounding_columns] = input_data_original[rounding_columns].round(2)  # Round to 2 decimal places
+
+        # Save or append result to CSV
+        if not os.path.isfile(output_file):
+            input_data_original.to_csv(output_file, index=False)
+        else:
+            input_data_original.to_csv(output_file, mode='a', header=False, index=False)
     
     return render_template('index.html', prediction=prediction, probability=probability, plot_url=plot_url)
 

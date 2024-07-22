@@ -1,3 +1,5 @@
+
+
 # Diabetes Predictor using Python and Machine Learning
 
 This project implements a diabetes predictor using machine learning techniques in Python. It includes preprocessing steps, model training, evaluation, and prediction functionalities.
@@ -47,3 +49,7 @@ This project implements a diabetes predictor using machine learning techniques i
    ```bash
    jupyter notebook
    ```
+   
+## Prediction History:
+
+The prediction records are stored in the directory `PATIENT_PREDICTION_RECORDS`, in the file `predicted_results.csv`. You can access the previous predictions through this file.

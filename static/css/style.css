@@ -23,15 +23,15 @@ body {
 	-moz-flex-direction: column;
 	-webkit-flex-direction: column;
 }
-.wizard-heading {
+.sammy-heading {
     color: #fff;
     font-family: 'Open Sans', sans-serif;
-    font-weight: 700;
-    font-size: 30px;
-    padding-top: 60px;
+    font-weight: 600;
+    font-size: 50px;
+    padding-top: 50px;
     padding-bottom: 55px;
 }
-.wizard-v6-content   {
+.sammy-v6-content   {
 	width: 910px;
 	box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
 	-o-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
@@ -51,7 +51,7 @@ body {
 	display: flex;
 	display: -webkit-flex;
 }
-.wizard-v6-content .wizard-form {
+.sammy-v6-content .sammy-form {
 	width: 100%;
 	background: #525575;
 	border-radius: 10px;
@@ -150,9 +150,9 @@ body {
 }
 .form-register .steps li a .step-text {
 	color: #ccc;
-	font-size: 18px;
+	font-size: 19px;
 	font-weight: 400;
-	padding-top: 18px;
+	padding-top: 17px;
 	padding-left: 20px;
 }
 .form-register .steps li.current a .step-text,
@@ -284,7 +284,6 @@ input::-ms-input-placeholder { /* Microsoft Edge */
    color: #fff;
 }
 .inner .form-row .form-holder select {
-    background: #fff url('../images/wizard_v6_icon.png') no-repeat scroll;
     background-position: right 16px center;
     z-index: 1;
     cursor: pointer;
@@ -441,7 +440,7 @@ input::-ms-input-placeholder { /* Microsoft Edge */
 
 /* Responsive */
 @media screen and (max-width: 991px) {
-	.wizard-v6-content {
+	.sammy-v6-content {
 		width: 90%;
 	}
 	.form-register .steps li a .title {
@@ -534,7 +533,7 @@ input::-ms-input-placeholder { /* Microsoft Edge */
 }
 
 body {
-    background-color: #383a4f; /* Replace with your desired background color */
+    background-color: #383a4f;
 }
 
 .no-scroll {
@@ -749,3 +748,31 @@ body {
     left: 0;
     z-index: 9999;
 }
+
+.datetime {
+    position: fixed; /* Keeps it in place on the screen */
+    top: 15px; /* Distance from the top */
+    left: 15px; /* Distance from the left */
+    font-size: 8px;
+    padding: 20px;
+    color: #ffffff;
+    background: #525575;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.14);
+    border-radius: 4px;
+    border-right: 10px #55e8d4 solid;
+    width: 250px;
+    font-weight: 600;
+    font-family: "Inter", sans-serif;
+    z-index: 9999; /* Ensure it stays on top */
+  }
+  
+  .time {
+    font-size: 3em;
+    color: #55e8d5;
+  }
+  
+  .date {
+    margin-top: 12px;
+    font-size: 1.75em;
+  }
+  
